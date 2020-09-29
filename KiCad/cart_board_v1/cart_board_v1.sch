@@ -1,0 +1,496 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector:Screw_Terminal_01x03 J4
+U 1 1 5EB64E39
+P 5300 5700
+F 0 "J4" H 5219 5375 50  0000 C CNN
+F 1 "USART Connection" H 5219 5466 50  0000 C CNN
+F 2 "Connector_Phoenix_MSTB:PhoenixContact_MSTBVA_2,5_3-G-5,08_1x03_P5.08mm_Vertical" H 5300 5700 50  0001 C CNN
+F 3 "~" H 5300 5700 50  0001 C CNN
+	1    5300 5700
+	1    0    0    1   
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x04 J1
+U 1 1 5EB64F77
+P 2600 2500
+F 0 "J1" H 2520 2817 50  0000 C CNN
+F 1 "Limit Switch Inputs" H 2520 2726 50  0000 C CNN
+F 2 "Connector_Phoenix_MSTB:PhoenixContact_MSTBVA_2,5_4-G-5,08_1x04_P5.08mm_Vertical" H 2600 2500 50  0001 C CNN
+F 3 "~" H 2600 2500 50  0001 C CNN
+	1    2600 2500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L RE_kicad_5:ATtiny816-SN U2
+U 1 1 5EB67199
+P 3800 2450
+F 0 "U2" H 4050 3600 50  0000 C CNN
+F 1 "ATtiny816-SN" H 4250 3500 50  0000 C CNN
+F 2 "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm" H 3800 2450 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/doc1477.pdf" H 3800 2450 50  0001 C CNN
+	1    3800 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J3
+U 1 1 5EB67207
+P 5100 900
+F 0 "J3" H 5179 892 50  0000 L CNN
+F 1 "Battery Input" H 5179 801 50  0000 L CNN
+F 2 "Connector_Phoenix_MSTB:PhoenixContact_MSTBVA_2,5_2-G-5,08_1x02_P5.08mm_Vertical" H 5100 900 50  0001 C CNN
+F 3 "~" H 5100 900 50  0001 C CNN
+	1    5100 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C6
+U 1 1 5EB67D9C
+P 3800 1050
+F 0 "C6" V 3548 1050 50  0000 C CNN
+F 1 "100n" V 3639 1050 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 3838 900 50  0001 C CNN
+F 3 "~" H 3800 1050 50  0001 C CNN
+F 4 "C49678" H 0   0   50  0001 C CNN "JLCPCB Number"
+	1    3800 1050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3650 1350 3650 1050
+Wire Wire Line
+	3950 1350 3950 1050
+$Comp
+L power:GNDD #PWR0101
+U 1 1 5EB68360
+P 4350 1100
+F 0 "#PWR0101" H 4350 850 50  0001 C CNN
+F 1 "GNDD" H 4354 945 50  0000 C CNN
+F 2 "" H 4350 1100 50  0001 C CNN
+F 3 "" H 4350 1100 50  0001 C CNN
+	1    4350 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 1050 4350 1050
+Wire Wire Line
+	4350 1050 4350 1100
+Connection ~ 3950 1050
+$Comp
+L power:GNDD #PWR0102
+U 1 1 5EB68392
+P 5550 2500
+F 0 "#PWR0102" H 5550 2250 50  0001 C CNN
+F 1 "GNDD" H 5554 2345 50  0000 C CNN
+F 2 "" H 5550 2500 50  0001 C CNN
+F 3 "" H 5550 2500 50  0001 C CNN
+	1    5550 2500
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 2500 5550 2500
+Wire Wire Line
+	5600 2400 4400 2400
+Text Notes 4800 2300 0    50   ~ 0
+PA6: DAC output\nPA7: AIN7 to ADC
+$Comp
+L power:GNDD #PWR0103
+U 1 1 5EB687B3
+P 5050 5900
+F 0 "#PWR0103" H 5050 5650 50  0001 C CNN
+F 1 "GNDD" H 5054 5745 50  0000 C CNN
+F 2 "" H 5050 5900 50  0001 C CNN
+F 3 "" H 5050 5900 50  0001 C CNN
+	1    5050 5900
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5100 5800 5050 5800
+Wire Wire Line
+	5050 5800 5050 5900
+Text Notes 5400 5800 0    50   ~ 0
+PB2: TXD\nPB3: RXD
+Wire Wire Line
+	4500 5550 4800 5550
+Wire Wire Line
+	4800 5550 4800 5600
+Wire Wire Line
+	4800 5600 5100 5600
+Wire Wire Line
+	5100 5700 4800 5700
+Wire Wire Line
+	4800 5700 4800 5750
+Wire Wire Line
+	4800 5750 4500 5750
+Text Label 4550 2900 0    50   ~ 0
+RXD
+Wire Wire Line
+	4550 2900 4400 2900
+Text Label 4550 2800 0    50   ~ 0
+TXD
+Wire Wire Line
+	4550 2800 4400 2800
+Text Label 2700 5550 2    50   ~ 0
+TXD
+Text Label 2700 5750 2    50   ~ 0
+RXD
+Wire Wire Line
+	2700 5750 2900 5750
+Wire Wire Line
+	2700 5550 2900 5550
+$Comp
+L power:+5V #PWR0104
+U 1 1 5EB697BB
+P 3500 1000
+F 0 "#PWR0104" H 3500 850 50  0001 C CNN
+F 1 "+5V" H 3515 1173 50  0000 C CNN
+F 2 "" H 3500 1000 50  0001 C CNN
+F 3 "" H 3500 1000 50  0001 C CNN
+	1    3500 1000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 1000 3500 1050
+Wire Wire Line
+	3500 1050 3650 1050
+Connection ~ 3650 1050
+Wire Wire Line
+	3200 2600 2800 2600
+Wire Wire Line
+	2800 2700 3200 2700
+$Comp
+L power:GNDD #PWR0105
+U 1 1 5EB6B3C2
+P 2950 2500
+F 0 "#PWR0105" H 2950 2250 50  0001 C CNN
+F 1 "GNDD" V 2954 2390 50  0000 R CNN
+F 2 "" H 2950 2500 50  0001 C CNN
+F 3 "" H 2950 2500 50  0001 C CNN
+	1    2950 2500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+5V #PWR0106
+U 1 1 5EB6B6F6
+P 2950 2400
+F 0 "#PWR0106" H 2950 2250 50  0001 C CNN
+F 1 "+5V" V 2950 2500 50  0000 L CNN
+F 2 "" H 2950 2400 50  0001 C CNN
+F 3 "" H 2950 2400 50  0001 C CNN
+	1    2950 2400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2950 2400 2800 2400
+Wire Wire Line
+	2800 2500 2950 2500
+Wire Wire Line
+	4400 2300 5600 2300
+Wire Wire Line
+	4400 2600 4850 2600
+$Comp
+L power:GNDD #PWR0107
+U 1 1 5EB7082D
+P 4850 2850
+F 0 "#PWR0107" H 4850 2600 50  0001 C CNN
+F 1 "GNDD" H 4854 2695 50  0000 C CNN
+F 2 "" H 4850 2850 50  0001 C CNN
+F 3 "" H 4850 2850 50  0001 C CNN
+	1    4850 2850
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4850 2850 4850 2800
+$Comp
+L Connector:Screw_Terminal_01x03 J2
+U 1 1 5EB70C64
+P 5050 2700
+F 0 "J2" H 5130 2742 50  0000 L CNN
+F 1 "DC Motor Control" H 5130 2651 50  0000 L CNN
+F 2 "Connector_Phoenix_MSTB:PhoenixContact_MSTBVA_2,5_3-G-5,08_1x03_P5.08mm_Vertical" H 5050 2700 50  0001 C CNN
+F 3 "~" H 5050 2700 50  0001 C CNN
+	1    5050 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4850 2700 4400 2700
+Text Notes 5150 3000 0    50   ~ 0
+PB0: PWM output\nPB1: Direction
+$Comp
+L Connector:Screw_Terminal_01x03 J5
+U 1 1 5EB719F3
+P 5800 2400
+F 0 "J5" H 5880 2442 50  0000 L CNN
+F 1 "Rotor Position Sensor" H 5880 2351 50  0000 L CNN
+F 2 "Connector_Phoenix_MSTB:PhoenixContact_MSTBVA_2,5_3-G-5,08_1x03_P5.08mm_Vertical" H 5800 2400 50  0001 C CNN
+F 3 "~" H 5800 2400 50  0001 C CNN
+	1    5800 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0108
+U 1 1 5EB72D6B
+P 4800 850
+F 0 "#PWR0108" H 4800 700 50  0001 C CNN
+F 1 "+5V" H 4815 1023 50  0000 C CNN
+F 2 "" H 4800 850 50  0001 C CNN
+F 3 "" H 4800 850 50  0001 C CNN
+	1    4800 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDD #PWR0109
+U 1 1 5EB72DBE
+P 4800 1050
+F 0 "#PWR0109" H 4800 800 50  0001 C CNN
+F 1 "GNDD" H 4804 895 50  0000 C CNN
+F 2 "" H 4800 1050 50  0001 C CNN
+F 3 "" H 4800 1050 50  0001 C CNN
+	1    4800 1050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 1050 4800 1000
+Wire Wire Line
+	4800 1000 4900 1000
+Wire Wire Line
+	4800 850  4800 900 
+Wire Wire Line
+	4800 900  4900 900 
+$Comp
+L Interface_UART:MAX232 U1
+U 1 1 5EB73E75
+P 3700 5250
+F 0 "U1" H 3700 6628 50  0000 C CNN
+F 1 "MAX232" H 3700 6537 50  0000 C CNN
+F 2 "Package_SO:SOIC-16W_5.3x10.2mm_P1.27mm" H 3750 4200 50  0001 L CNN
+F 3 "http://www.ti.com/lit/ds/symlink/max232.pdf" H 3700 5350 50  0001 C CNN
+F 4 "C26860" H 3700 5250 50  0001 C CNN "JLCPCB Number"
+	1    3700 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0110
+U 1 1 5EB73F68
+P 3450 3950
+F 0 "#PWR0110" H 3450 3800 50  0001 C CNN
+F 1 "+5V" H 3465 4123 50  0000 C CNN
+F 2 "" H 3450 3950 50  0001 C CNN
+F 3 "" H 3450 3950 50  0001 C CNN
+	1    3450 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3450 3950 3450 4050
+Wire Wire Line
+	3450 4050 3700 4050
+$Comp
+L power:GNDD #PWR0111
+U 1 1 5EB74577
+P 3700 6550
+F 0 "#PWR0111" H 3700 6300 50  0001 C CNN
+F 1 "GNDD" H 3704 6395 50  0000 C CNN
+F 2 "" H 3700 6550 50  0001 C CNN
+F 3 "" H 3700 6550 50  0001 C CNN
+	1    3700 6550
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 6550 3700 6450
+Wire Wire Line
+	2600 4350 2900 4350
+Wire Wire Line
+	2600 4650 2900 4650
+Wire Wire Line
+	4750 4350 4500 4350
+Wire Wire Line
+	4500 4650 4750 4650
+$Comp
+L Device:CP1 C1
+U 1 1 5EB76AC3
+P 2600 4500
+F 0 "C1" H 2715 4546 50  0000 L CNN
+F 1 "1u" H 2715 4455 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 2600 4500 50  0001 C CNN
+F 3 "~" H 2600 4500 50  0001 C CNN
+F 4 "C28323" H 0   0   50  0001 C CNN "JLCPCB Number"
+	1    2600 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP1 C2
+U 1 1 5EB76B73
+P 4750 4500
+F 0 "C2" H 4865 4546 50  0000 L CNN
+F 1 "1u" H 4865 4455 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 4750 4500 50  0001 C CNN
+F 3 "~" H 4750 4500 50  0001 C CNN
+F 4 "C28323" H 0   0   50  0001 C CNN "JLCPCB Number"
+	1    4750 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP1 C4
+U 1 1 5EB76BDD
+P 4700 5150
+F 0 "C4" V 4448 5150 50  0000 C CNN
+F 1 "1u" V 4539 5150 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 4700 5150 50  0001 C CNN
+F 3 "~" H 4700 5150 50  0001 C CNN
+F 4 "C28323" H 0   0   50  0001 C CNN "JLCPCB Number"
+	1    4700 5150
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GNDD #PWR0112
+U 1 1 5EB76C43
+P 4950 5150
+F 0 "#PWR0112" H 4950 4900 50  0001 C CNN
+F 1 "GNDD" V 4954 5040 50  0000 R CNN
+F 2 "" H 4950 5150 50  0001 C CNN
+F 3 "" H 4950 5150 50  0001 C CNN
+	1    4950 5150
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	4950 5150 4850 5150
+Wire Wire Line
+	4500 5150 4550 5150
+$Comp
+L Device:CP1 C3
+U 1 1 5EB785BB
+P 5050 4850
+F 0 "C3" V 5302 4850 50  0000 C CNN
+F 1 "1u" V 5211 4850 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 5050 4850 50  0001 C CNN
+F 3 "~" H 5050 4850 50  0001 C CNN
+F 4 "C28323" H 0   0   50  0001 C CNN "JLCPCB Number"
+	1    5050 4850
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4900 4850 4500 4850
+Wire Wire Line
+	3700 4050 5300 4050
+Wire Wire Line
+	5300 4050 5300 4850
+Wire Wire Line
+	5300 4850 5200 4850
+Connection ~ 3700 4050
+$Comp
+L Device:CP1 C5
+U 1 1 5EB79998
+P 5500 4500
+F 0 "C5" H 5615 4546 50  0000 L CNN
+F 1 "1u" H 5615 4455 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 5500 4500 50  0001 C CNN
+F 3 "~" H 5500 4500 50  0001 C CNN
+F 4 "C28323" H 0   0   50  0001 C CNN "JLCPCB Number"
+	1    5500 4500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5300 4050 5500 4050
+Wire Wire Line
+	5500 4050 5500 4350
+Connection ~ 5300 4050
+$Comp
+L power:GNDD #PWR0113
+U 1 1 5EB7A50C
+P 5500 4800
+F 0 "#PWR0113" H 5500 4550 50  0001 C CNN
+F 1 "GNDD" H 5504 4645 50  0000 C CNN
+F 2 "" H 5500 4800 50  0001 C CNN
+F 3 "" H 5500 4800 50  0001 C CNN
+	1    5500 4800
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 4800 5500 4650
+Wire Wire Line
+	4400 1700 4900 1700
+$Comp
+L power:GNDD #PWR0114
+U 1 1 5EB808E4
+P 5600 1950
+F 0 "#PWR0114" H 5600 1700 50  0001 C CNN
+F 1 "GNDD" H 5604 1795 50  0000 C CNN
+F 2 "" H 5600 1950 50  0001 C CNN
+F 3 "" H 5600 1950 50  0001 C CNN
+	1    5600 1950
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 1950 5600 1900
+Wire Wire Line
+	5600 1900 5400 1900
+$Comp
+L power:+5V #PWR0115
+U 1 1 5EB815BF
+P 5600 1650
+F 0 "#PWR0115" H 5600 1500 50  0001 C CNN
+F 1 "+5V" H 5615 1823 50  0000 C CNN
+F 2 "" H 5600 1650 50  0001 C CNN
+F 3 "" H 5600 1650 50  0001 C CNN
+	1    5600 1650
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5400 1700 5600 1700
+Wire Wire Line
+	5600 1700 5600 1650
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J6
+U 1 1 5EB8307B
+P 5100 1800
+F 0 "J6" H 5150 2117 50  0000 C CNN
+F 1 "Programming Header" H 5150 2026 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 5100 1800 50  0001 C CNN
+F 3 "~" H 5100 1800 50  0001 C CNN
+	1    5100 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 J7
+U 1 1 5EB8E36D
+P 2600 2900
+F 0 "J7" H 2700 2950 50  0000 C CNN
+F 1 "Status Indicators" H 3000 2850 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 2600 2900 50  0001 C CNN
+F 3 "~" H 2600 2900 50  0001 C CNN
+	1    2600 2900
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	2800 2800 3200 2800
+Wire Wire Line
+	3200 2900 2800 2900
+$Comp
+L power:GNDD #PWR0116
+U 1 1 5EB94695
+P 3000 3050
+F 0 "#PWR0116" H 3000 2800 50  0001 C CNN
+F 1 "GNDD" H 3004 2895 50  0000 C CNN
+F 2 "" H 3000 3050 50  0001 C CNN
+F 3 "" H 3000 3050 50  0001 C CNN
+	1    3000 3050
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	3000 3050 3000 3000
+Wire Wire Line
+	3000 3000 2800 3000
+$EndSCHEMATC
