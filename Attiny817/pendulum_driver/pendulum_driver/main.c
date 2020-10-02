@@ -9,6 +9,7 @@ https://community.nxp.com/docs/DOC-98836
 #include <string.h>
 #include <stdlib.h>
 #include "pendulum.h"
+// #include "pid.c"
 //
 #define PWMFREQ			.5e3
 #define TCA0_PERIOD		(F_CPU / (2*4*PWMFREQ)) - 1;				// See equation in 20.3.3.4.2 of manual
@@ -65,6 +66,8 @@ void get_speed_command(void);
 //
 uint32_t speed_command, adc_result;
 int32_t direction, prev_dir;
+struct PID_DATA pidData;
+
 //
 volatile int loop;
 int32_t position_error;
@@ -72,7 +75,7 @@ int32_t position_setpoint;
 int32_t current_position;
 int32_t loop_counter = 0;
 uint32_t output_data[6];
-uint32_t rotor_angle, max_angle;
+uint32_t rotorAngle, max_angle;
 char usart_send_buffer[4];
 int32_t usart_send_length;
 int32_t Vt = 10200;
@@ -80,6 +83,7 @@ int32_t P = 800;
 int32_t Q = 200;
 int32_t usart_idx;
 uint16_t *usart_ptr;
+int var1 ;
 
 int16_t debug[200];
 /*
@@ -114,14 +118,26 @@ int main(void) {
 	ADC_setup();
 	sei();
 	speed_command = 4500;
+	int rotorReference = 194;
+	int deadband = 2;
 	while (1) {
 		if (loop) {
 			PORTB.OUTSET = PIN5_bm;
-			// get_speed_command();
 			
-			if (loop_counter < 100) direction = 1;
-			if (loop_counter > 100) direction = 0;
-			if (loop_counter == 200) loop_counter = 0;
+			rotorAngle = get_rotor_position();
+			// int32_t pidOutput = pid_Controller(rotorReference, rotorAngle, &pidData);
+			// Simple bang-bang stabiliser for non-inverted pendulum
+			if (rotorAngle > (rotorReference+deadband)){
+				direction = 1;
+				speed_command = 4900;
+			}
+			else if (rotorAngle < (rotorReference-deadband)){
+				direction = 0;
+				speed_command = 4900;				
+			}
+			else {
+				speed_command = 0;
+			}
 			loop_counter++;
 			
 			PORTB.OUTCLR = PIN5_bm;
