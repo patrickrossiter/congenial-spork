@@ -8,14 +8,13 @@ https://community.nxp.com/docs/DOC-98836
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "pendulum.h"
-// #include "pid.c"
+#include "pid.c"
 //
 #define PWMFREQ			.5e3
-#define TCA0_PERIOD		(F_CPU / (2*4*PWMFREQ)) - 1;				// See equation in 20.3.3.4.2 of manual
+#define TCA0_PERIOD		(F_CPU / (2*4*PWMFREQ)) - 1				// See equation in 20.3.3.4.2 of manual
 
 #define F_TCA			(F_CPU / 8)
-#define F_CALC			100			// Hz
+#define F_CALC			1000			// Hz
 #define F_TWI			400e3		// Hz (not working)
 
 #define TOP_SPEED		0xFFF
@@ -64,10 +63,9 @@ void USART_multi_char(uint16_t *input, int length);
 uint32_t get_rotor_position(void);
 void get_speed_command(void);
 //
-uint32_t speed_command, adc_result;
+int16_t speed_command, adc_result;
 int32_t direction, prev_dir;
 struct PID_DATA pidData;
-
 //
 volatile int loop;
 int32_t position_error;
@@ -75,7 +73,7 @@ int32_t position_setpoint;
 int32_t current_position;
 int32_t loop_counter = 0;
 uint32_t output_data[6];
-uint32_t rotorAngle, max_angle;
+int16_t rotorAngle, max_angle;
 char usart_send_buffer[4];
 int32_t usart_send_length;
 int32_t Vt = 10200;
@@ -83,9 +81,7 @@ int32_t P = 800;
 int32_t Q = 200;
 int32_t usart_idx;
 uint16_t *usart_ptr;
-int var1 ;
-
-int16_t debug[200];
+//int16_t debug[200];
 /*
 USART
 TXD - PA1
@@ -117,26 +113,25 @@ int main(void) {
 	// ADC for angle position detection
 	ADC_setup();
 	sei();
-	speed_command = 4500;
-	int rotorReference = 194;
-	int deadband = 2;
+	int16_t rotorReference = get_rotor_position();
+
+	pid_Init(200, 0, 500, &pidData);
+	
 	while (1) {
 		if (loop) {
 			PORTB.OUTSET = PIN5_bm;
 			
+			// PID stabiliser for non-inverted pendulum
 			rotorAngle = get_rotor_position();
-			// int32_t pidOutput = pid_Controller(rotorReference, rotorAngle, &pidData);
-			// Simple bang-bang stabiliser for non-inverted pendulum
-			if (rotorAngle > (rotorReference+deadband)){
-				direction = 1;
-				speed_command = 4900;
-			}
-			else if (rotorAngle < (rotorReference-deadband)){
+			int16_t pidOutput = pid_Controller(rotorReference, rotorAngle, &pidData);
+			
+			if (pidOutput >= 0) {
 				direction = 0;
-				speed_command = 4900;				
+				speed_command = MIN(TCA0_PERIOD, pidOutput * 100);
 			}
 			else {
-				speed_command = 0;
+				direction = 1;
+				speed_command = MIN(TCA0_PERIOD, -pidOutput * 100);
 			}
 			loop_counter++;
 			

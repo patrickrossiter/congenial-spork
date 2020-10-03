@@ -49,6 +49,8 @@ int16_t pid_Controller(int16_t setPoint, int16_t processValue, struct PID_DATA *
 	int32_t i_term, ret, temp;
 
 	errors = setPoint - processValue;
+	if (errors >= 180) errors -= 180;
+	if (errors < -180) errors += 180;
 
 	// Calculate Pterm and limit error overflow
 	if (errors > pid_st->maxError) {
